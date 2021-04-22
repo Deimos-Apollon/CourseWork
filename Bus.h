@@ -7,7 +7,7 @@
 
 
 class Bus {
-    //something;
+
 };
 
 class Buses_name
