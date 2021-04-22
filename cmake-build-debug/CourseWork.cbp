@@ -4,90 +4,94 @@
 	<Project>
 		<Option title="CourseWork"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="gcc"/>
+		<Option compiler="msvc8"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/deimos/CLionProjects/CourseWork/cmake-build-debug"/>
+				<Option working_dir="C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/deimos/CLionProjects/CourseWork/cmake-build-debug"/>
+				<Option working_dir="C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/deimos/CLionProjects/CourseWork/cmake-build-debug"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CourseWork">
-				<Option output="/home/deimos/CLionProjects/CourseWork/cmake-build-debug/CourseWork" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/deimos/CLionProjects/CourseWork/cmake-build-debug"/>
+				<Option output="C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug/CourseWork.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 CourseWork"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 CourseWork"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="CourseWork/fast">
-				<Option output="/home/deimos/CLionProjects/CourseWork/cmake-build-debug/CourseWork" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/deimos/CLionProjects/CourseWork/cmake-build-debug"/>
+				<Option output="C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug/CourseWork.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="gcc"/>
+				<Option compiler="msvc8"/>
 				<Compiler>
-					<Add directory="/usr/include/c++/7"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
-					<Add directory="/usr/include/c++/7/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.28.29333\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 CourseWork/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/deimos/CLionProjects/CourseWork/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 CourseWork/fast"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\Makefile VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/deimos/CLionProjects/CourseWork/main.cpp">
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/Bus.cpp">
 			<Option target="CourseWork"/>
 		</Unit>
-		<Unit filename="/home/deimos/CLionProjects/CourseWork/CMakeLists.txt">
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/Bus.h">
+			<Option target="CourseWork"/>
+		</Unit>
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/main.cpp">
+			<Option target="CourseWork"/>
+		</Unit>
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
