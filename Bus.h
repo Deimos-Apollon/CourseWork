@@ -10,5 +10,8 @@ class Bus {
 
 };
 
+class Buses_name
+{
 
+};
 #endif //COURSEWORK_BUS_H
