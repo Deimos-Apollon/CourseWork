@@ -98,19 +98,40 @@ CMakeFiles\CourseWork.dir\Bus.cpp.s: cmake_force
  /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\CourseWork.dir\Bus.cpp.s /c C:\Users\InfinityDimas\CLionProjects\CourseWork\Bus.cpp
 <<
 
+CMakeFiles\CourseWork.dir\Additional_Classes.cpp.obj: CMakeFiles\CourseWork.dir\flags.make
+CMakeFiles\CourseWork.dir\Additional_Classes.cpp.obj: ..\Additional_Classes.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CourseWork.dir/Additional_Classes.cpp.obj"
+	C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1428~1.293\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoCMakeFiles\CourseWork.dir\Additional_Classes.cpp.obj /FdCMakeFiles\CourseWork.dir\ /FS -c C:\Users\InfinityDimas\CLionProjects\CourseWork\Additional_Classes.cpp
+<<
+
+CMakeFiles\CourseWork.dir\Additional_Classes.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CourseWork.dir/Additional_Classes.cpp.i"
+	C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1428~1.293\bin\Hostx86\x86\cl.exe > CMakeFiles\CourseWork.dir\Additional_Classes.cpp.i @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\InfinityDimas\CLionProjects\CourseWork\Additional_Classes.cpp
+<<
+
+CMakeFiles\CourseWork.dir\Additional_Classes.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CourseWork.dir/Additional_Classes.cpp.s"
+	C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1428~1.293\bin\Hostx86\x86\cl.exe @<<
+ /nologo /TP $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) /FoNUL /FAs /FaCMakeFiles\CourseWork.dir\Additional_Classes.cpp.s /c C:\Users\InfinityDimas\CLionProjects\CourseWork\Additional_Classes.cpp
+<<
+
 # Object files for target CourseWork
 CourseWork_OBJECTS = \
 "CMakeFiles\CourseWork.dir\main.cpp.obj" \
-"CMakeFiles\CourseWork.dir\Bus.cpp.obj"
+"CMakeFiles\CourseWork.dir\Bus.cpp.obj" \
+"CMakeFiles\CourseWork.dir\Additional_Classes.cpp.obj"
 
 # External object files for target CourseWork
 CourseWork_EXTERNAL_OBJECTS =
 
 CourseWork.exe: CMakeFiles\CourseWork.dir\main.cpp.obj
 CourseWork.exe: CMakeFiles\CourseWork.dir\Bus.cpp.obj
+CourseWork.exe: CMakeFiles\CourseWork.dir\Additional_Classes.cpp.obj
 CourseWork.exe: CMakeFiles\CourseWork.dir\build.make
 CourseWork.exe: CMakeFiles\CourseWork.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable CourseWork.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable CourseWork.exe"
 	"C:\Program Files\JetBrains\CLion 2020.2.4\bin\cmake\win\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\CourseWork.dir --rc=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\rc.exe --mt=C:\PROGRA~2\WI3CF2~1\10\bin\100183~1.0\x86\mt.exe --manifests -- C:\PROGRA~2\MIB055~1\2019\COMMUN~1\VC\Tools\MSVC\1428~1.293\bin\Hostx86\x86\link.exe /nologo @CMakeFiles\CourseWork.dir\objects1.rsp @<<
  /out:CourseWork.exe /implib:CourseWork.lib /pdb:C:\Users\InfinityDimas\CLionProjects\CourseWork\cmake-build-debug\CourseWork.pdb /version:0.0 /machine:X86 /debug /INCREMENTAL /subsystem:console  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<

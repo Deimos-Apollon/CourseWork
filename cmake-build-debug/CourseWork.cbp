@@ -82,6 +82,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/Additional_Classes.cpp">
+			<Option target="CourseWork"/>
+		</Unit>
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/Additional_Classes.h">
+			<Option target="CourseWork"/>
+		</Unit>
 		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/Bus.cpp">
 			<Option target="CourseWork"/>
 		</Unit>

@@ -126,6 +126,33 @@ CourseWork\fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\build
 .PHONY : CourseWork\fast
 
+Additional_Classes.obj: Additional_Classes.cpp.obj
+
+.PHONY : Additional_Classes.obj
+
+# target to build an object file
+Additional_Classes.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\Additional_Classes.cpp.obj
+.PHONY : Additional_Classes.cpp.obj
+
+Additional_Classes.i: Additional_Classes.cpp.i
+
+.PHONY : Additional_Classes.i
+
+# target to preprocess a source file
+Additional_Classes.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\Additional_Classes.cpp.i
+.PHONY : Additional_Classes.cpp.i
+
+Additional_Classes.s: Additional_Classes.cpp.s
+
+.PHONY : Additional_Classes.s
+
+# target to generate assembly for a file
+Additional_Classes.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\Additional_Classes.cpp.s
+.PHONY : Additional_Classes.cpp.s
+
 Bus.obj: Bus.cpp.obj
 
 .PHONY : Bus.obj
@@ -189,6 +216,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... CourseWork
+	@echo ... Additional_Classes.obj
+	@echo ... Additional_Classes.i
+	@echo ... Additional_Classes.s
 	@echo ... Bus.obj
 	@echo ... Bus.i
 	@echo ... Bus.s

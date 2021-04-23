@@ -3,4 +3,4 @@ project(CourseWork)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(CourseWork main.cpp Bus.cpp Bus.h)
+add_executable(CourseWork main.cpp Bus.cpp Bus.h Additional_Classes.cpp Additional_Classes.h)
