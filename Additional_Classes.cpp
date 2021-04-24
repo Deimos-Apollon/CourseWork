@@ -50,3 +50,28 @@ void String::AddLastEl(char* m_s)
         last = head;
     }
 }
+
+// Cities' Methods
+void Cities::PrintList(std::ofstream& f)
+{
+    Cities* temp = this;
+    while (temp != nullptr)
+    {
+        temp->GetName()->PrintList(f);
+        temp = temp->GetNext();
+    }
+}
+
+void String::PrintList(std::ofstream &f) {
+    El_String* temp = this->GetHead();
+    while (temp != nullptr)
+    {
+        temp->PrintList(f);
+        temp = temp->GetNext();
+    }
+}
+
+void El_String::PrintList(std::ofstream &f) {
+
+}
+
