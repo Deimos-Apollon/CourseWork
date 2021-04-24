@@ -12,6 +12,7 @@ class Bus {
     Cities* city;
     //Seats* seats;
 public:
+    Bus (Buses_names* m_bus_name, Buses_types* m_bus_type, Cities* m_city);
 
 };
 

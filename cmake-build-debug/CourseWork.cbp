@@ -94,6 +94,12 @@
 		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/Bus.h">
 			<Option target="CourseWork"/>
 		</Unit>
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/InpOutFunctions.cpp">
+			<Option target="CourseWork"/>
+		</Unit>
+		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/InpOutFunctions.h">
+			<Option target="CourseWork"/>
+		</Unit>
 		<Unit filename="C:/Users/InfinityDimas/CLionProjects/CourseWork/main.cpp">
 			<Option target="CourseWork"/>
 		</Unit>

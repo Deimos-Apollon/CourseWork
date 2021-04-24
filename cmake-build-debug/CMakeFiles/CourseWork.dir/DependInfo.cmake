@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/InfinityDimas/CLionProjects/CourseWork/Additional_Classes.cpp" "C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug/CMakeFiles/CourseWork.dir/Additional_Classes.cpp.obj"
   "C:/Users/InfinityDimas/CLionProjects/CourseWork/Bus.cpp" "C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug/CMakeFiles/CourseWork.dir/Bus.cpp.obj"
+  "C:/Users/InfinityDimas/CLionProjects/CourseWork/InpOutFunctions.cpp" "C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug/CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.obj"
   "C:/Users/InfinityDimas/CLionProjects/CourseWork/main.cpp" "C:/Users/InfinityDimas/CLionProjects/CourseWork/cmake-build-debug/CMakeFiles/CourseWork.dir/main.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "MSVC")

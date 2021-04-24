@@ -180,6 +180,33 @@ Bus.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\Bus.cpp.s
 .PHONY : Bus.cpp.s
 
+InpOutFunctions.obj: InpOutFunctions.cpp.obj
+
+.PHONY : InpOutFunctions.obj
+
+# target to build an object file
+InpOutFunctions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\InpOutFunctions.cpp.obj
+.PHONY : InpOutFunctions.cpp.obj
+
+InpOutFunctions.i: InpOutFunctions.cpp.i
+
+.PHONY : InpOutFunctions.i
+
+# target to preprocess a source file
+InpOutFunctions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\InpOutFunctions.cpp.i
+.PHONY : InpOutFunctions.cpp.i
+
+InpOutFunctions.s: InpOutFunctions.cpp.s
+
+.PHONY : InpOutFunctions.s
+
+# target to generate assembly for a file
+InpOutFunctions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\CourseWork.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\CourseWork.dir\InpOutFunctions.cpp.s
+.PHONY : InpOutFunctions.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -222,6 +249,9 @@ help:
 	@echo ... Bus.obj
 	@echo ... Bus.i
 	@echo ... Bus.s
+	@echo ... InpOutFunctions.obj
+	@echo ... InpOutFunctions.i
+	@echo ... InpOutFunctions.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

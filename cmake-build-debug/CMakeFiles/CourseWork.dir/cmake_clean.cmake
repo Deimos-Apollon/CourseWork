@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/CourseWork.dir/Additional_Classes.cpp.obj"
   "CMakeFiles/CourseWork.dir/Bus.cpp.obj"
+  "CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.obj"
   "CMakeFiles/CourseWork.dir/main.cpp.obj"
   "CourseWork.exe"
   "CourseWork.exe.manifest"
