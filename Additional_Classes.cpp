@@ -4,6 +4,25 @@
 
 #include "Additional_Classes.h"
 
+//////////////////////// El_String methods
+
+void El_String::PrintList(std::ofstream &f) {
+    for (unsigned i = 0; i < N; i++)
+    {
+        f << s[i];
+    }
+}
+
+void El_String::PrintLastEl(std::ofstream& f, unsigned len)
+{
+    for (unsigned i = 0; i < len; i++)
+    {
+        f << s[i];
+    }
+}
+
+///////////////////////String's methods
+
 String* ReadStr(std::ifstream& f)
 {
     String* line = new String;
@@ -51,27 +70,70 @@ void String::AddLastEl(char* m_s)
     }
 }
 
-// Cities' Methods
-void Cities::PrintList(std::ofstream& f)
-{
-    Cities* temp = this;
-    while (temp != nullptr)
-    {
-        temp->GetName()->PrintList(f);
-        temp = temp->GetNext();
-    }
-}
-
 void String::PrintList(std::ofstream &f) {
     El_String* temp = this->GetHead();
-    while (temp != nullptr)
+    while (temp != last)
     {
         temp->PrintList(f);
         temp = temp->GetNext();
     }
+    temp->PrintLastEl(f, Last_El_length);
 }
 
-void El_String::PrintList(std::ofstream &f) {
+///////////////////////////Buses_names methods
 
+void Buses_names::PrintList(std::ofstream& f)
+{
+    f << "Вывод названий автобусов:\n";
+    Buses_names* temp = this;
+    unsigned int i = 1;
+    while (temp != nullptr)
+    {
+        f << i << ": ";
+        temp->GetName()->PrintList(f);
+        temp = temp->GetNext();
+        f << "\n";
+        i++;
+    }
+    f << "\n";
 }
+
+///////////////////////////Buses_types methods
+
+void Buses_types::PrintList(std::ofstream& f)
+{
+    f << "Вывод типов автобусов:\n";
+    Buses_types* temp = this;
+    unsigned int i = 1;
+    while (temp != nullptr)
+    {
+        f << i << ": ";
+        temp->GetName()->PrintList(f);
+        temp = temp->GetNext();
+        f << "\n";
+        i++;
+    }
+    f << "\n";
+}
+
+///////////////////////////Cities' Methods
+
+void Cities::PrintList(std::ofstream& f)
+{
+    f << "Вывод списка городов:\n";
+    Cities* temp = this;
+    unsigned int i = 1;
+    while (temp != nullptr)
+    {
+        f << i << ": ";
+        temp->GetName()->PrintList(f);
+        temp = temp->GetNext();
+        f << "\n";
+        i++;
+    }
+    f << "\n";
+}
+
+//////////////////////////////////////////
+
 

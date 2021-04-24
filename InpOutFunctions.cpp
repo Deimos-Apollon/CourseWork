@@ -19,13 +19,42 @@ Cities* ReadCities(std::ifstream& f)
     return head;
 }
 
+Buses_names* ReadNames(std::ifstream& f)
+{
+    Buses_names* city = new Buses_names;
+    Buses_names* head = city;
+    city->SetName(ReadStr(f));
+
+    while (!f.eof())
+    {
+        city->SetNext(new Buses_names);
+        city = city->GetNext();
+        city->SetName(ReadStr(f));
+    }
+    return head;
+}
+
+Buses_types* ReadType(std::ifstream& f)
+{
+    Buses_types* city = new Buses_types;
+    Buses_types* head = city;
+    city->SetName(ReadStr(f));
+
+    while (!f.eof())
+    {
+        city->SetNext(new Buses_types);
+        city = city->GetNext();
+        city->SetName(ReadStr(f));
+    }
+    return head;
+}
 
 bool Check_file_corr(std::ifstream &f)
 {
-    return (f.is_open() and !f.bad() and !f.eof());
+    return (f.is_open() && !f.bad() && !f.eof());
 }
 
 bool Check_file_corr(std::ofstream &f)
 {
-    return (f.is_open() and !f.bad());
+    return (f.is_open() && !f.bad());
 }

@@ -18,7 +18,9 @@ public:
     void SetNext (El_String* m_next) { next = m_next; }
 
     void PrintList(std::ofstream& f);
+    void PrintLastEl(std::ofstream& f, unsigned len);
 };
+
 
 class String{
 
@@ -39,27 +41,32 @@ public:
     El_String* GetLast() { return last; }
 };
 
+
 class Buses_names
 {
-    String name;
+    String* name;
     Buses_names* next = nullptr;
 public:
-    String GetName() { return name; }
+    String* GetName() { return name; }
     Buses_names* GetNext() { return next; }
-    void SetName(String m_name) { name = m_name; }
+    void SetName(String* m_name) { name = m_name; }
     void SetNext(Buses_names* m_next) { next = m_next; }
+
+    void PrintList(std::ofstream& f);
 };
 
 
 class Buses_types
 {
-    String name;
+    String* name;
     Buses_types* next = nullptr;
 public:
-    String GetName() { return name; }
+    String* GetName() { return name; }
     Buses_types* GetNext() { return next; }
-    void SetName(String m_name) { name = m_name; }
+    void SetName(String* m_name) { name = m_name; }
     void SetNext(Buses_types* m_next) { next = m_next; }
+
+    void PrintList(std::ofstream& f);
 };
 
 class Cities
