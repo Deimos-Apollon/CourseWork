@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/CourseWork.dir/main.cpp.o CMakeFiles/CourseWork.dir/Bus.cpp.o CMakeFiles/CourseWork.dir/Additional_Classes.cpp.o CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.o -o CourseWork 
