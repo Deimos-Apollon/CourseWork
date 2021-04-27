@@ -47,25 +47,27 @@ void List_Of_Buses::PrintList(std::ofstream& f)
 
 
 void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses,
-                     unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min)
+                     unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min, unsigned request_num)
 {
     Buses_names* tmp_names = head_names;
     Buses_types* tmp_types = head_types;
     Cities* tmp_cities = head_cities;
 
-    for (int j = 0; j < n_name; j++)
+    //n_name = 0 - означет пропуск имени
+
+    for (int j = 1; j <= n_name; j++)
     {
         tmp_names = tmp_names->GetNext();
         if (tmp_names == nullptr) break;
     }
 
-    for (int j = 0; j < n_type; j++)
+    for (int j = 1; j <= n_type; j++)
     {
         tmp_types = tmp_types->GetNext();
         if (tmp_types == nullptr) break;
     }
 
-    for (int j = 0; j < n_city; j++)
+    for (int j = 1; j <= n_city; j++)
     {
         if (tmp_cities->GetNext() == nullptr) break;
         tmp_cities = tmp_cities->GetNext();
@@ -79,7 +81,10 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
                     tmp->GetCity() == tmp_cities &&
                         tmp->GetHour() == hour && tmp->GetMin() == min)
         {
-            f << "Автобус подходит";
+            f << "По заявке #" << request_num << " подходит автобус с параметрами: \nИмя: "; tmp->GetName()->GetName()->PrintList(f);
+            f << "\nТип: "; tmp->GetType()->GetName()->PrintList(f);
+            f << "\nГород следования: "; tmp->GetCity()->GetName()->PrintList(f);
+            f << "\nОтправление в " << tmp->GetHour() << ":" << tmp->GetMin() << "\n\n";
         }
         tmp = tmp->GetNext();
     }

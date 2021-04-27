@@ -5,7 +5,10 @@
 
 void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses)
 {
+
+    unsigned request_num = 1;
     while (!f.eof()) {
+
         unsigned short i = 0;
         unsigned params[5];
         for (unsigned int &param : params) param = 0;
@@ -56,9 +59,13 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
         //////////// чтение остальных параметров
 
 
-
         if (corr) {
-
+            f >> c;
+            while (c == ' ') {
+                f >> c;
+                if (f.eof()) break;
+            }
+            f.seekg(-1, std::ios::cur);
                 while (c != '\n' && corr) {
                     f >> c;
                     if (f.eof()) break;
@@ -119,7 +126,8 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
             }
 
         ProcessRequests(f_out, head_names, head_types, head_cities, buses,
-                        params[0], params[1], params[2], params[3], params[4]);
+                        params[0], params[1], params[2], params[3], params[4], request_num);
+        request_num++;
     }
 }
 

@@ -55,6 +55,6 @@ Bus* Bus_create(unsigned name,
 void ProcessRequests(std::ofstream &f,
                      Buses_names* head_names, Buses_types* head_types, Cities* head_cities,
                      List_Of_Buses* buses,
-                     unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min);
+                     unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min, unsigned request_num);
 
 #endif //COURSEWORK_BUS_H
