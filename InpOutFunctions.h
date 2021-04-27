@@ -11,6 +11,12 @@ Cities* ReadCities(std::ifstream& f);
 Buses_names* ReadNames(std::ifstream& f);
 Buses_types* ReadType(std::ifstream& f);
 
+List_Of_Buses* ReadBuses(std::ifstream& f,
+                         Buses_names* head_names,
+                         Buses_types* head_types,
+                         Cities* head_cities);
+
+
 bool Check_file_corr(std::ifstream &f);
 bool Check_file_corr(std::ofstream &f);
 

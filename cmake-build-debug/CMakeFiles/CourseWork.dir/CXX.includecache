@@ -6,3 +6,19 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/InfinityDimas/CLionProjects/CourseWork/Additional_Classes.h
+fstream
+-
+
+C:/Users/InfinityDimas/CLionProjects/CourseWork/Bus.h
+Additional_Classes.h
+C:/Users/InfinityDimas/CLionProjects/CourseWork/Additional_Classes.h
+
+C:/Users/InfinityDimas/CLionProjects/CourseWork/InpOutFunctions.cpp
+InpOutFunctions.h
+C:/Users/InfinityDimas/CLionProjects/CourseWork/InpOutFunctions.h
+
+C:/Users/InfinityDimas/CLionProjects/CourseWork/InpOutFunctions.h
+Bus.h
+C:/Users/InfinityDimas/CLionProjects/CourseWork/Bus.h
+
