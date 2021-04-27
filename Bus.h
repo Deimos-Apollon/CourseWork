@@ -22,9 +22,14 @@ public:
                             Buses_types *m_bus_type,
                             Cities *m_city,
                             unsigned m_hour, unsigned m_min);
+    Buses_names* GetName() { return bus_name; };
+    Buses_types* GetType() { return bus_type; };
+    Cities* GetCity() { return city; };
     Bus* GetNext() { return next; }
-    void SetNext(Bus* m_next) { next = m_next; }
+    unsigned GetHour() { return hour; }
+    unsigned GetMin() { return min; }
 
+    void SetNext(Bus* m_next) { next = m_next; }
     void PrintList(std::ofstream& f);
 };
 
@@ -47,5 +52,9 @@ Bus* Bus_create(unsigned name,
                 unsigned hour,
                 unsigned minute);
 
+void ProcessRequests(std::ofstream &f,
+                     Buses_names* head_names, Buses_types* head_types, Cities* head_cities,
+                     List_Of_Buses* buses,
+                     unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min);
 
 #endif //COURSEWORK_BUS_H

@@ -44,3 +44,43 @@ void List_Of_Buses::PrintList(std::ofstream& f)
         f << "\n";
     }
 }
+
+
+void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses,
+                     unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min)
+{
+    Buses_names* tmp_names = head_names;
+    Buses_types* tmp_types = head_types;
+    Cities* tmp_cities = head_cities;
+
+    for (int j = 0; j < n_name; j++)
+    {
+        tmp_names = tmp_names->GetNext();
+        if (tmp_names == nullptr) break;
+    }
+
+    for (int j = 0; j < n_type; j++)
+    {
+        tmp_types = tmp_types->GetNext();
+        if (tmp_types == nullptr) break;
+    }
+
+    for (int j = 0; j < n_city; j++)
+    {
+        if (tmp_cities->GetNext() == nullptr) break;
+        tmp_cities = tmp_cities->GetNext();
+    }
+
+    Bus* tmp = buses->GetHead();
+    while (tmp != nullptr)
+    {
+        if (tmp->GetName() == tmp_names &&
+                tmp->GetType() == tmp_types &&
+                    tmp->GetCity() == tmp_cities &&
+                        tmp->GetHour() == hour && tmp->GetMin() == min)
+        {
+            f << "Автобус подходит";
+        }
+        tmp = tmp->GetNext();
+    }
+}

@@ -16,6 +16,12 @@ List_Of_Buses* ReadBuses(std::ifstream& f,
                          Buses_types* head_types,
                          Cities* head_cities);
 
+void ReadRequests(std::ifstream& f, std::ofstream& f_out,
+                  Buses_names* head_names,
+                             Buses_types* head_types,
+                             Cities* head_cities,
+                             List_Of_Buses* buses);
+
 
 bool Check_file_corr(std::ifstream &f);
 bool Check_file_corr(std::ofstream &f);

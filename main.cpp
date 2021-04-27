@@ -63,5 +63,8 @@ int main() {
     List_Of_Buses* buses = ReadBuses(f_in_buses, names, types, cities);
     if (buses != nullptr) buses->PrintList(f_out);
 
+    ///////////////////////////////////////////////////////////////////////Reading and Processing Requests
+    ReadRequests(f_in, f_out, names, types, cities, buses);
+
     return 0;
 }
