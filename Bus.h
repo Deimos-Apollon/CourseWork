@@ -7,13 +7,13 @@
 #include "Additional_Classes.h"
 
 class Bus {
-    Buses_names* bus_name;
-    Buses_types* bus_type;
-    Cities* city;
+    Buses_names* bus_name = nullptr;
+    Buses_types* bus_type = nullptr;
+    Cities* city = nullptr;
     //Seats* seats;
 
     unsigned hour, min;
-    Bus* next;
+    Bus* next = nullptr;
 public:
     //Bus (Buses_names* m_bus_name,
     //     Buses_types* m_bus_type,
@@ -30,8 +30,8 @@ public:
 
 
 class List_Of_Buses{
-    Bus* m_head;
-    Bus* m_last;
+    Bus* m_head = nullptr;
+    Bus* m_last = nullptr;
 public:
     void SetHead(Bus* head) { m_head = head; }
     void SetLast(Bus* last) { m_last = last; }

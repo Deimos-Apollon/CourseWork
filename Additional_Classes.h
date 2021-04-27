@@ -44,7 +44,7 @@ public:
 
 class Buses_names
 {
-    String* name;
+    String* name = nullptr;
     Buses_names* next = nullptr;
 public:
     String* GetName() { return name; }
@@ -58,7 +58,7 @@ public:
 
 class Buses_types
 {
-    String* name;
+    String* name = nullptr;
     Buses_types* next = nullptr;
 public:
     String* GetName() { return name; }
@@ -71,7 +71,7 @@ public:
 
 class Cities
 {
-    String* name;
+    String* name = nullptr;
     Cities* next = nullptr;
 public:
     String* GetName() { return name; }

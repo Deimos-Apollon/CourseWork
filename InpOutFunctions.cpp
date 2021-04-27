@@ -7,7 +7,6 @@ List_Of_Buses* ReadBuses(std::ifstream& f, Buses_names* head_names, Buses_types*
 {
     Bus* tmp_bus = new Bus;
     List_Of_Buses* tmp_list = new List_Of_Buses;
-    tmp_list->SetHead(tmp_bus);
 
     while (!f.eof())
     {
@@ -89,18 +88,22 @@ List_Of_Buses* ReadBuses(std::ifstream& f, Buses_names* head_names, Buses_types*
                 tmp_cities = tmp_cities->GetNext();
             }
 
-            if (tmp_names != nullptr && tmp_types != nullptr && tmp_cities != nullptr)
-                tmp_bus->BusInitialize(tmp_names, tmp_types, tmp_cities, params[3], params[4]);
-
-        }
-
-        if (!f.eof()) {
-            tmp_bus->SetNext(new Bus);
-            tmp_bus = tmp_bus->GetNext();
+            if (tmp_names != nullptr && tmp_types != nullptr && tmp_cities != nullptr) {
+                if (tmp_list->GetHead() == nullptr) {
+                    tmp_list->SetHead(tmp_bus);
+                    tmp_bus->BusInitialize(tmp_names, tmp_types, tmp_cities, params[3], params[4]);
+                }
+                else {
+                    tmp_bus->SetNext(new Bus);
+                    tmp_bus = tmp_bus->GetNext();
+                    tmp_bus->BusInitialize(tmp_names, tmp_types, tmp_cities, params[3], params[4]);
+                }
+            }                     //TODO подробный отчёт по заявке и ошибки в формировании автобуса
         }
     }
 
     tmp_list->SetLast(tmp_bus);
+
     return tmp_list;
 }
 

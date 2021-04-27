@@ -20,13 +20,17 @@ void Bus::BusInitialize(Buses_names *m_bus_name, Buses_types *m_bus_type, Cities
 
 void Bus::PrintList(std::ofstream& f)
 {
-    bus_name->GetName()->PrintList(f);
-    f << "\n";
-    bus_type->GetName()->PrintList(f);
-    f << "\n";
-    city->GetName()->PrintList(f);
-    f << "\n";
-    f << hour << ":" << min << "\n";
+    if (bus_name->GetName() != nullptr &&
+            bus_type->GetName() != nullptr &&
+                city->GetName() != nullptr) {
+        bus_name->GetName()->PrintList(f);
+        f << "\n";
+        bus_type->GetName()->PrintList(f);
+        f << "\n";
+        city->GetName()->PrintList(f);
+        f << "\n";
+        f << hour << ":" << min << "\n";
+    } else f << "Error\n";
 }
 
 void List_Of_Buses::PrintList(std::ofstream& f)
