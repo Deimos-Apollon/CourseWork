@@ -76,9 +76,9 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
     Bus* tmp = buses->GetHead();
     while (tmp != nullptr)
     {
-        if (tmp->GetName() == tmp_names &&
-                tmp->GetType() == tmp_types &&
-                    tmp->GetCity() == tmp_cities &&
+        if ((tmp->GetName() == tmp_names || n_name == 0) &&
+                (tmp->GetType() == tmp_types || n_type == 0) &&
+                (tmp->GetCity() == tmp_cities || n_city == 0) &&
                         tmp->GetHour() == hour && tmp->GetMin() == min)
         {
             f << "По заявке #" << request_num << " подходит автобус с параметрами: \nИмя: "; tmp->GetName()->GetName()->PrintList(f);
@@ -88,4 +88,5 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
         }
         tmp = tmp->GetNext();
     }
+
 }

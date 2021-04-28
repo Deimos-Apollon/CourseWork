@@ -2,11 +2,12 @@
 //иерархический список
 #include <iomanip>
 
+std::ofstream f_out("output.txt");
+
 int main() {
 
     ////////////////////////////////////////////////////////////////// Opening files and checking if they are correct
 
-    std::ofstream f_out("output.txt");
 
     if ( !Check_file_corr(f_out) ) {
         return -1;

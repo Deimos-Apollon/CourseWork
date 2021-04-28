@@ -1,6 +1,7 @@
 //
 // Created by deimos on 24.04.2021.
 //
+
 #include "InpOutFunctions.h"
 
 void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses)
@@ -9,13 +10,13 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
     unsigned request_num = 1;
     while (!f.eof()) {
 
-        unsigned short i = 0;
         unsigned params[5];
         for (unsigned int &param : params) param = 0;
+
         char c = ' ';
         bool corr = true;
 
-        // чтение имени
+        /////////////////////////// чтение имени
 
 
             f >> c;
@@ -53,13 +54,15 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                         break;
                     }
                 }
-            } else { corr = false; break; }
+            } else break;
 
 
         //////////// чтение остальных параметров
 
 
         if (corr) {
+            unsigned short i = 0;
+
             f >> c;
             while (c == ' ') {
                 f >> c;
@@ -70,10 +73,7 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                     f >> c;
                     if (f.eof()) break;
                     switch (c) {
-                        case '-':
-                            if (i < 4) i++;
-                            else corr = false;
-                            break;
+                        case '-': break;
                         case '0':
                             params[i] = params[i] * 10 + 0;
                             break;
@@ -104,7 +104,6 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                         case '9':
                             params[i] = params[i] * 10 + 9;
                             break;
-
                         case ' ':
                             while (c == ' ') {
                                 f >> c;
@@ -129,6 +128,7 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                         params[0], params[1], params[2], params[3], params[4], request_num);
         request_num++;
     }
+
 }
 
 List_Of_Buses* ReadBuses(std::ifstream& f, Buses_names* head_names, Buses_types* head_types, Cities* head_cities)
@@ -142,7 +142,6 @@ List_Of_Buses* ReadBuses(std::ifstream& f, Buses_names* head_names, Buses_types*
         for (unsigned int & param : params) param = 0;
         unsigned short i = 0;
         char c = ' '; bool corr = true;
-
 
         while (c != '\n' && corr) {
 
