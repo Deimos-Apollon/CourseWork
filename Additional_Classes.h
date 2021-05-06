@@ -4,6 +4,7 @@
 #ifndef COURSEWORK_ADDITIONAL_CLASSES_H
 #define COURSEWORK_ADDITIONAL_CLASSES_H
 #include <fstream>
+#include <iostream>
 
 const unsigned N = 10;
 
@@ -19,6 +20,8 @@ public:
 
     void PrintList(std::ofstream& f);
     void PrintLastEl(std::ofstream& f, unsigned len);
+    void PrintList();
+    void PrintLastEl(unsigned len);
 };
 
 
@@ -36,6 +39,7 @@ public:
     void SetLastElLength(unsigned int m_len) { Last_El_length = m_len; }
     unsigned int GetLastElLength() { return Last_El_length; }
     void PrintList(std::ofstream& f);
+    void PrintList();
 
     El_String* GetHead() { return head; }
     El_String* GetLast() { return last; }

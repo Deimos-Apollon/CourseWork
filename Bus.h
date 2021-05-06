@@ -6,6 +6,8 @@
 #define COURSEWORK_BUS_H
 #include "Additional_Classes.h"
 
+
+
 class Bus {
     Buses_names* bus_name = nullptr;
     Buses_types* bus_type = nullptr;
@@ -18,7 +20,7 @@ public:
     //Bus (Buses_names* m_bus_name,
     //     Buses_types* m_bus_type,
     //     Cities* m_city);
-    void Bus::BusInitialize(Buses_names *m_bus_name,
+    void BusInitialize(Buses_names *m_bus_name,
                             Buses_types *m_bus_type,
                             Cities *m_city,
                             unsigned m_hour, unsigned m_min);
@@ -31,6 +33,7 @@ public:
 
     void SetNext(Bus* m_next) { next = m_next; }
     void PrintList(std::ofstream& f);
+    void PrintList();
 };
 
 
@@ -43,6 +46,7 @@ public:
     Bus* GetHead() { return m_head; }
 
     void PrintList(std::ofstream& f);
+    void PrintList();
 };
 
 

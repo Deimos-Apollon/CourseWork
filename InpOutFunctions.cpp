@@ -1,8 +1,104 @@
 //
 // Created by deimos on 24.04.2021.
 //
-
 #include "InpOutFunctions.h"
+
+void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses,
+                    unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min, unsigned request_num)
+{
+    Buses_names* tmp_names = head_names;
+    Buses_types* tmp_types = head_types;
+    Cities* tmp_cities = head_cities;
+
+    //n_name = 0 - означет пропуск имени
+
+    for (int j = 1; j <= n_name; j++)
+    {
+        tmp_names = tmp_names->GetNext();
+        if (tmp_names == nullptr) break;
+    }
+
+    for (int j = 1; j <= n_type; j++)
+    {
+        tmp_types = tmp_types->GetNext();
+        if (tmp_types == nullptr) break;
+    }
+
+    for (int j = 1; j <= n_city; j++)
+    {
+        if (tmp_cities->GetNext() == nullptr) break;
+        tmp_cities = tmp_cities->GetNext();
+    }
+
+    Bus* tmp = buses->GetHead();
+
+    std::cout << "\n\nЗаявка #" << request_num << ", Выберите один из подходящих автобусов: \n\n";
+
+    unsigned short num = 1;
+    while (tmp != nullptr)
+    {
+        if ((tmp->GetName() == tmp_names || n_name == 0) &&
+            (tmp->GetType() == tmp_types || n_type == 0) &&
+            (tmp->GetCity() == tmp_cities || n_city == 0) &&
+            tmp->GetHour() == hour && tmp->GetMin() == min)
+        {
+            std::cout << "Автобус #" << num;
+            std::cout << "\nИмя: "; tmp->GetName()->GetName()->PrintList();
+            std::cout << "\nТип: "; tmp->GetType()->GetName()->PrintList();
+            std::cout << "\nГород следования: "; tmp->GetCity()->GetName()->PrintList();
+            std::cout << "\nОтправление в " << tmp->GetHour() << ":" << tmp->GetMin() << "\n\n";
+            num++;
+        }
+        tmp = tmp->GetNext();
+    }
+    --num;
+
+
+    unsigned int ans = 0;
+    bool read_ans_corr = false;
+    while (!read_ans_corr)
+    {
+        std::cout << "Введите номер подходящего автобуса: ";
+        read_ans_corr = true;
+        char ans_str[12];
+        std::cin.getline(ans_str, 12);
+        unsigned length = 0;
+        ans = 0;
+        for (auto c: ans_str)
+        {
+            if (c == '\0') break;
+            length++;
+        }
+        if (length > 10)
+        {
+            std::cout << "ERR: Слишком длинный номер автобуса, такого в списке нет.\n";
+            read_ans_corr = false;
+        }
+        else {
+            for (auto c: ans_str) {
+                if (c == '\0') break;
+                if ('0' <= c && c <= '9') {
+                    Char_to_int(c, ans);
+                } else {
+                    std::cout << "ERR: Некорректный номер автобуса\n";
+                    read_ans_corr = false;
+                    break;
+                }
+            }
+        }
+
+        if (read_ans_corr && ans == 0) {
+            read_ans_corr = false;
+            std::cout << "ERR: Нет автобуса под номером '0', нумерация с '1'\n";
+        }
+
+        if (read_ans_corr && ans > num) {
+            read_ans_corr = false;
+            std::cout << "ERR: Слишком большой номер автобуса, такого в списке нет.\n";
+        }
+    }
+
+}
 
 void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses)
 {
@@ -17,7 +113,6 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
         bool corr = true;
 
         /////////////////////////// чтение имени
-
 
             f >> c;
             if (c == '"') {
@@ -72,38 +167,9 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                 while (c != '\n' && corr) {
                     f >> c;
                     if (f.eof()) break;
-                    switch (c) {
+                    if ('0' <= c && c <= '9') Char_to_int(c, params[i]);
+                    else switch (c) {
                         case '-': break;
-                        case '0':
-                            params[i] = params[i] * 10 + 0;
-                            break;
-                        case '1':
-                            params[i] = params[i] * 10 + 1;
-                            break;
-                        case '2':
-                            params[i] = params[i] * 10 + 2;
-                            break;
-                        case '3':
-                            params[i] = params[i] * 10 + 3;
-                            break;
-                        case '4':
-                            params[i] = params[i] * 10 + 4;
-                            break;
-                        case '5':
-                            params[i] = params[i] * 10 + 5;
-                            break;
-                        case '6':
-                            params[i] = params[i] * 10 + 6;
-                            break;
-                        case '7':
-                            params[i] = params[i] * 10 + 7;
-                            break;
-                        case '8':
-                            params[i] = params[i] * 10 + 8;
-                            break;
-                        case '9':
-                            params[i] = params[i] * 10 + 9;
-                            break;
                         case ' ':
                             while (c == ' ') {
                                 f >> c;
@@ -147,29 +213,10 @@ List_Of_Buses* ReadBuses(std::ifstream& f, Buses_names* head_names, Buses_types*
 
             f >> c;
             if (f.eof()) break;
+            if ('0' <= c && c <= '9') Char_to_int(c, params[i]);
+            else
             switch(c)
             {
-                case '0':
-                    params[i] = params[i] * 10 + 0; break;
-                case '1':
-                    params[i] = params[i] * 10 + 1; break;
-                case '2':
-                    params[i] = params[i] * 10 + 2; break;
-                case '3':
-                    params[i] = params[i] * 10 + 3; break;
-                case '4':
-                    params[i] = params[i] * 10 + 4; break;
-                case '5':
-                    params[i] = params[i] * 10 + 5; break;
-                case '6':
-                    params[i] = params[i] * 10 + 6; break;
-                case '7':
-                    params[i] = params[i] * 10 + 7; break;
-                case '8':
-                    params[i] = params[i] * 10 + 8; break;
-                case '9':
-                    params[i] = params[i] * 10 + 9; break;
-
                 case ' ':
                     while (c == ' '){
                         f >> c;
@@ -277,6 +324,43 @@ Buses_types* ReadType(std::ifstream& f)
         city->SetName(ReadStr(f));
     }
     return head;
+}
+
+void Char_to_int(char c, unsigned int& number)
+{
+    switch(c)       //defualt case isn't needed, you must check if 0 <= c <= 9
+    {
+        case '0':
+            number = number * 10 + 0;
+            break;
+        case '1':
+            number = number * 10 + 1;
+            break;
+        case '2':
+            number = number * 10 + 2;
+            break;
+        case '3':
+            number = number * 10 + 3;
+            break;
+        case '4':
+            number = number * 10 + 4;
+            break;
+        case '5':
+            number = number * 10 + 5;
+            break;
+        case '6':
+            number = number * 10 + 6;
+            break;
+        case '7':
+            number = number * 10 + 7;
+            break;
+        case '8':
+            number = number * 10 + 8;
+            break;
+        case '9':
+            number = number * 10 + 9;
+            break;
+    }
 }
 
 bool Check_file_corr(std::ifstream &f)

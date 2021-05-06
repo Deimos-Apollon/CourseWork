@@ -21,6 +21,21 @@ void El_String::PrintLastEl(std::ofstream& f, unsigned len)
     }
 }
 
+void El_String::PrintList() {
+    for (unsigned i = 0; i < N; i++)
+    {
+        std::cout << s[i];
+    }
+}
+
+void El_String::PrintLastEl(unsigned len)
+{
+    for (unsigned i = 0; i < len; i++)
+    {
+        std::cout << s[i];
+    }
+}
+
 ///////////////////////String's methods
 
 String* ReadStr(std::ifstream& f)
@@ -78,6 +93,16 @@ void String::PrintList(std::ofstream &f) {
         temp = temp->GetNext();
     }
     temp->PrintLastEl(f, Last_El_length);
+}
+
+void String::PrintList() {
+    El_String* temp = this->GetHead();
+    while (temp != last)
+    {
+        temp->PrintList();
+        temp = temp->GetNext();
+    }
+    temp->PrintLastEl(Last_El_length);
 }
 
 ///////////////////////////Buses_names methods

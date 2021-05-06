@@ -67,5 +67,7 @@ int main() {
     ///////////////////////////////////////////////////////////////////////Reading and Processing Requests
     ReadRequests(f_in, f_out, names, types, cities, buses);
 
+    //TODO сделать несколько билетов для одного человека при вводе и список людей и его билетов + места
+
     return 0;
 }
