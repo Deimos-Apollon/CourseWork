@@ -75,3 +75,30 @@ void List_Of_Buses::PrintList()
         std::cout << "\n";
     }
 }
+
+Bus* List_of_Matches::GoTo(unsigned num)
+{
+    List_of_Matches* tmp = this->GetNext();
+    unsigned i = 0;
+    while (tmp!= nullptr && i < num)
+    {
+        tmp = tmp->GetNext();
+        i++;
+    }
+    if (tmp == nullptr)
+    {
+        std::cout << "ERR: List_of_Matches\n";
+        return nullptr;
+    }
+    else return tmp->GetBus();
+}
+
+unsigned Bus::Take_a_Seat() {
+    if (taked_seats == all_seats) std::cout << "ERR: Больше нет мест на этот автобус!\n";
+    else ++taked_seats;
+    return taked_seats;
+}
+
+bool Bus::Enough_Seats(unsigned int num) {
+    return (all_seats >= num + taked_seats);
+}

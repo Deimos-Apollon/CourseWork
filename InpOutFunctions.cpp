@@ -4,7 +4,9 @@
 #include "InpOutFunctions.h"
 
 void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses,
-                    unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min, unsigned request_num)
+                     String* clients_name,
+                    unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour,
+                    unsigned min, unsigned amount_of_ticks, unsigned request_num)
 {
     Buses_names* tmp_names = head_names;
     Buses_types* tmp_types = head_types;
@@ -32,9 +34,15 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
 
     Bus* tmp = buses->GetHead();
 
-    std::cout << "\n\nЗаявка #" << request_num << ", Выберите один из подходящих автобусов: \n\n";
 
     unsigned short num = 1;
+    List_of_Matches* matches = new List_of_Matches;
+    auto matches_head = matches;
+
+    std::cout << "\n\nЗаявка #" << request_num << ", ";
+    clients_name->PrintList();
+    std::cout << ", поиск подходящих автобусов: \n\n";
+
     while (tmp != nullptr)
     {
         if ((tmp->GetName() == tmp_names || n_name == 0) &&
@@ -47,57 +55,100 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
             std::cout << "\nТип: "; tmp->GetType()->GetName()->PrintList();
             std::cout << "\nГород следования: "; tmp->GetCity()->GetName()->PrintList();
             std::cout << "\nОтправление в " << tmp->GetHour() << ":" << tmp->GetMin() << "\n\n";
+
+            matches->setNext(new List_of_Matches);
+            matches = matches->GetNext();
+            matches->setBus(tmp);
             num++;
         }
         tmp = tmp->GetNext();
     }
     --num;
 
+    /////////////////////////////////////выбор автобуса
+    if (num != 0) {
 
-    unsigned int ans = 0;
-    bool read_ans_corr = false;
-    while (!read_ans_corr)
-    {
-        std::cout << "Введите номер подходящего автобуса: ";
-        read_ans_corr = true;
-        char ans_str[12];
-        std::cin.getline(ans_str, 12);
-        unsigned length = 0;
-        ans = 0;
-        for (auto c: ans_str)
-        {
-            if (c == '\0') break;
-            length++;
-        }
-        if (length > 10)
-        {
-            std::cout << "ERR: Слишком длинный номер автобуса, такого в списке нет.\n";
-            read_ans_corr = false;
-        }
-        else {
+        unsigned int ans = 0;
+        bool read_ans_corr = false;
+        while (!read_ans_corr) {
+            std::cout << "Введите номер подходящего автобуса (0 - отмена заявки): ";
+            read_ans_corr = true;
+            char ans_str[12];
+            std::cin.getline(ans_str, 12);
+            unsigned length = 0;
+            ans = 0;
             for (auto c: ans_str) {
                 if (c == '\0') break;
-                if ('0' <= c && c <= '9') {
-                    Char_to_int(c, ans);
-                } else {
-                    std::cout << "ERR: Некорректный номер автобуса\n";
-                    read_ans_corr = false;
-                    break;
+                length++;
+            }
+            if (length > 10) {
+                std::cout << "ERR: Слишком длинный номер автобуса, такого в списке нет.\n";
+                read_ans_corr = false;
+            } else {
+                for (auto c: ans_str) {
+                    if (c == '\0') break;
+                    if ('0' <= c && c <= '9') {
+                        Char_to_int(c, ans);
+                    } else {
+                        std::cout << "ERR: Некорректный номер автобуса\n";
+                        read_ans_corr = false;
+                        break;
+                    }
                 }
+            }
+
+            if (read_ans_corr && ans > num) {
+                read_ans_corr = false;
+                std::cout << "ERR: Слишком большой номер автобуса, такого в списке нет.\n";
             }
         }
 
-        if (read_ans_corr && ans == 0) {
-            read_ans_corr = false;
-            std::cout << "ERR: Нет автобуса под номером '0', нумерация с '1'\n";
-        }
+        ////////////////////////////////////Обрабатываем заявку, создаём билеты
 
-        if (read_ans_corr && ans > num) {
-            read_ans_corr = false;
-            std::cout << "ERR: Слишком большой номер автобуса, такого в списке нет.\n";
+        if (ans != 0) {
+
+            ///////////////проход до выбранного автобуса
+            Bus *match_bus = matches_head->GoTo(ans - 1);
+
+            /////////////////////покупка билетов
+            f << "Заявка #" << request_num << " покупка билетов:\n";
+            if (match_bus->Enough_Seats(amount_of_ticks)) {
+                Tickets *l_ticks = match_bus->GetTickets();
+                Ticket *tmp = new Ticket;
+                if (l_ticks == nullptr) {
+                    match_bus->SetTickets(new Tickets);
+
+                    tmp->setPerson_name(clients_name);
+                    tmp->SetSeat(match_bus->Take_a_Seat());
+
+                    l_ticks = new Tickets;
+                    l_ticks->setHead(tmp);
+                    l_ticks->setLast(tmp);
+                }
+
+                f << "Имя: ";
+                tmp->Get_Person_name()->PrintList(f);
+                f << "   | Место: " << tmp->Get_Seat();
+                f << "\n";
+
+                for (int i = 0; i < amount_of_ticks - 1; i++) {
+                    tmp = new Ticket;
+                    tmp->setPerson_name(clients_name);
+                    tmp->SetSeat(match_bus->Take_a_Seat());
+                    l_ticks->setLast(tmp);
+                    f << "Имя: ";
+                    tmp->Get_Person_name()->PrintList(f);
+                    f << "   | Место: " << tmp->Get_Seat();
+                    f << "\n";
+                }
+            }
+
         }
+    } else
+    {
+        std::cout << "Подходящих автобусов нет :(\n";
+        f << "Заявка #" << request_num << " нет подходящих рейсов\n";
     }
-
 }
 
 void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses)
@@ -106,7 +157,7 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
     unsigned request_num = 1;
     while (!f.eof()) {
 
-        unsigned params[5];
+        unsigned params[6];
         for (unsigned int &param : params) param = 0;
 
         char c = ' ';
@@ -114,42 +165,45 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
 
         /////////////////////////// чтение имени
 
-            f >> c;
-            if (c == '"') {
-                String *line = new String;
-                c = ' ';
+        f >> c;
+        String *name = new String;
+        if (c == '"') {
+            c = ' ';
 
-                while (c != '"') {
-                    char *tmpS = new char[N];
-                    for (int k = 0; k < N; k++) {
+            while (c != '"') {
+                char *tmpS = new char[N];
+                for (int k = 0; k < N; k++) {
 
-                        f >> c;
-                        if (c == '\n' || f.eof()) { corr = false; break; }
+                    f >> c;
+                    if (c == '\n' || f.eof()) { corr = false; break; }
 
-                        if (c == '"') {
-                            if (k != 0) {
+                    if (c == '"') {
+                        if (k != 0) {
 
-                                char *tmp2 = new char[k];
-                                for (int j = 0; j < k; j++) {
-                                    tmp2[j] = tmpS[j];
-                                }
-
-                                line->AddLastEl(tmp2);
-                                line->SetLastElLength(k);
-                                break;
+                            char *tmp2 = new char[k];
+                            for (int j = 0; j < k; j++) {
+                                tmp2[j] = tmpS[j];
                             }
-                        }
-                        tmpS[k] = c;
-                    }
-                    line->AddLastEl(tmpS);
-                    line->SetLastElLength(N);
 
-                    if (c == '\n' || f.eof()) {
-                        corr = false;
-                        break;
+                            name->AddLastEl(tmp2);
+                            name->SetLastElLength(k);
+                            break;
+                        }
                     }
+                    tmpS[k] = c;
                 }
-            } else break;
+
+                if (c != '"') {
+                    name->AddLastEl(tmpS);
+                    name->SetLastElLength(N);
+                }
+
+                if (c == '\n' || f.eof()) {
+                    corr = false;
+                    break;
+                }
+            }
+        } else break;
 
 
         //////////// чтение остальных параметров
@@ -177,9 +231,10 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                             }
 
                             f.seekg(-1, std::ios::cur);
+                            if (i < 5) i++; else corr = false;
+                            break;
                         case ':':
-                            if (i < 4) i++;
-                            else corr = false;
+                            if (i == 3) i++; else corr = false;
                             break;
                         case '\n':
                             break;
@@ -188,10 +243,14 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                     }
 
                 }
-            }
-
-        ProcessRequests(f_out, head_names, head_types, head_cities, buses,
-                        params[0], params[1], params[2], params[3], params[4], request_num);
+        }
+        if (params[5] == 0)
+        {
+            corr = false;
+        }
+        if (corr) ProcessRequests(f_out, head_names, head_types, head_cities, buses, name,
+                        params[0], params[1], params[2], params[3], params[4], params[5], request_num);
+        else f_out << "\nЗаявка #" << request_num << " некорректна\n";
         request_num++;
     }
 

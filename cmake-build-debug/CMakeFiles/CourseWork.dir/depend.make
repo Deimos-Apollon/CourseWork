@@ -7,14 +7,21 @@ CMakeFiles/CourseWork.dir/Additional_Classes.cpp.o: ../Additional_Classes.h
 CMakeFiles/CourseWork.dir/Bus.cpp.o: ../Additional_Classes.h
 CMakeFiles/CourseWork.dir/Bus.cpp.o: ../Bus.cpp
 CMakeFiles/CourseWork.dir/Bus.cpp.o: ../Bus.h
+CMakeFiles/CourseWork.dir/Bus.cpp.o: ../Tickets_And_People.h
 
 CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.o: ../Additional_Classes.h
 CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.o: ../Bus.h
 CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.o: ../InpOutFunctions.cpp
 CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.o: ../InpOutFunctions.h
+CMakeFiles/CourseWork.dir/InpOutFunctions.cpp.o: ../Tickets_And_People.h
+
+CMakeFiles/CourseWork.dir/Tickets_And_People.cpp.o: ../Additional_Classes.h
+CMakeFiles/CourseWork.dir/Tickets_And_People.cpp.o: ../Tickets_And_People.cpp
+CMakeFiles/CourseWork.dir/Tickets_And_People.cpp.o: ../Tickets_And_People.h
 
 CMakeFiles/CourseWork.dir/main.cpp.o: ../Additional_Classes.h
 CMakeFiles/CourseWork.dir/main.cpp.o: ../Bus.h
 CMakeFiles/CourseWork.dir/main.cpp.o: ../InpOutFunctions.h
+CMakeFiles/CourseWork.dir/main.cpp.o: ../Tickets_And_People.h
 CMakeFiles/CourseWork.dir/main.cpp.o: ../main.cpp
 
