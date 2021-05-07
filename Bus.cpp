@@ -27,12 +27,16 @@ void Bus::PrintList(std::ofstream& f)
     if (bus_name->GetName() != nullptr &&
             bus_type->GetName() != nullptr &&
                 city->GetName() != nullptr) {
+        f << "Имя: ";
         bus_name->GetName()->PrintList(f);
         f << "\n";
+        f << "Тип: ";
         bus_type->GetName()->PrintList(f);
         f << "\n";
+        f << "Город следования:  ";
         city->GetName()->PrintList(f);
         f << "\n";
+        f <<  "Отправление в ";
         f << hour << ":" << min << "\n";
     } else f << "Error\n";
 }
@@ -54,12 +58,16 @@ void Bus::PrintList()
     if (bus_name->GetName() != nullptr &&
         bus_type->GetName() != nullptr &&
         city->GetName() != nullptr) {
+        std::cout << "Имя: ";
         bus_name->GetName()->PrintList();
         std::cout << "\n";
+        std::cout << "Тип: ";
         bus_type->GetName()->PrintList();
         std::cout << "\n";
+        std::cout << "Город следования: ";
         city->GetName()->PrintList();
         std::cout << "\n";
+        std::cout << "Отправление в ";
         std::cout << hour << ":" << min << "\n";
     } else std::cout << "Error\n";
 }
@@ -93,9 +101,8 @@ Bus* List_of_Matches::GoTo(unsigned num)
     else return tmp->GetBus();
 }
 
-unsigned Bus::Take_a_Seat() {
-    if (taked_seats == all_seats) std::cout << "ERR: Больше нет мест на этот автобус!\n";
-    else ++taked_seats;
+unsigned Bus::Take_a_Seats(unsigned short amount) {
+    taked_seats += amount;
     return taked_seats;
 }
 

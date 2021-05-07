@@ -8,16 +8,18 @@
 
 class Ticket{
     String* person_name;
-    unsigned short seat = 0;
+    unsigned short first_seat = 0, last_seat = 0;
     Ticket* next = nullptr;
 public:
     void setPerson_name(String* name) { person_name = name; }
     void SetNext(Ticket* m_next) { next = m_next; }
-    void SetSeat(unsigned short m_seat) { seat = m_seat; }
+    void Set_First_Seat(unsigned short f_seat) { first_seat = f_seat; }
+    void Set_Last_Seat( unsigned short l_seat) { last_seat = l_seat; }
 
     String* Get_Person_name() {return person_name; }
-    unsigned short Get_Seat() {return seat; }
-    Ticket* Get_next() {return next;}
+    unsigned short Get_First_Seat() { return first_seat; }
+    unsigned short Get_Last_Seat() { return last_seat; }
+    Ticket* Get_next() { return next; }
 
     void PrintList();
 };
@@ -35,8 +37,5 @@ public:
     void PrintList();
 };
 
-class Person
-{
-    Tickets tickets;
-};
+
 #endif //COURSEWORK_TICKETS_AND_PEOPLE_H

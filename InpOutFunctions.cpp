@@ -114,40 +114,44 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
             f << "Заявка #" << request_num << " покупка билетов:\n";
             if (match_bus->Enough_Seats(amount_of_ticks)) {
                 Tickets *l_ticks = match_bus->GetTickets();
+
                 Ticket *tmp = new Ticket;
+
+                tmp->setPerson_name(clients_name);
+                tmp->Set_First_Seat(match_bus->Take_a_Seats(1));
+
                 if (l_ticks == nullptr) {
                     match_bus->SetTickets(new Tickets);
-
-                    tmp->setPerson_name(clients_name);
-                    tmp->SetSeat(match_bus->Take_a_Seat());
 
                     l_ticks = new Tickets;
                     l_ticks->setHead(tmp);
                     l_ticks->setLast(tmp);
+
                 }
 
-                f << "Имя: ";
+                tmp->Set_Last_Seat(match_bus->Take_a_Seats(amount_of_ticks - 1));
+                l_ticks->setLast(tmp);
+
+                f << "Имя покупателя: ";
                 tmp->Get_Person_name()->PrintList(f);
-                f << "   | Место: " << tmp->Get_Seat();
-                f << "\n";
-
-                for (int i = 0; i < amount_of_ticks - 1; i++) {
-                    tmp = new Ticket;
-                    tmp->setPerson_name(clients_name);
-                    tmp->SetSeat(match_bus->Take_a_Seat());
-                    l_ticks->setLast(tmp);
-                    f << "Имя: ";
-                    tmp->Get_Person_name()->PrintList(f);
-                    f << "   | Место: " << tmp->Get_Seat();
-                    f << "\n";
+                if (amount_of_ticks != 1) {
+                    f << "   | Места: " << tmp->Get_First_Seat();
+                    f << " - " << tmp->Get_Last_Seat() << "\n";
+                } else
+                {
+                    f << "   | Место: " << tmp->Get_First_Seat() << "\n";
                 }
+                f << "\n";
+                f << "Автобус: \n";
+                match_bus->PrintList(f);
+                f << "\n";
             }
 
         }
     } else
     {
-        std::cout << "Подходящих автобусов нет :(\n";
-        f << "Заявка #" << request_num << " нет подходящих рейсов\n";
+        std::cout << "Подходящих автобусов нет :(\n\n";
+        f << "Заявка #" << request_num << " нет подходящих рейсов\n\n";
     }
 }
 
@@ -203,7 +207,7 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                     break;
                 }
             }
-        } else break;
+        } else corr = false;
 
 
         //////////// чтение остальных параметров
@@ -250,8 +254,13 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
         }
         if (corr) ProcessRequests(f_out, head_names, head_types, head_cities, buses, name,
                         params[0], params[1], params[2], params[3], params[4], params[5], request_num);
-        else f_out << "\nЗаявка #" << request_num << " некорректна\n";
+        else f_out << "Заявка #" << request_num << " некорректна\n\n";
         request_num++;
+
+        while (c != '\n' && !f.eof())
+        {
+            f >> c;
+        }
     }
 
 }

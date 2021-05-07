@@ -10,7 +10,10 @@ void Ticket::PrintList() {   ///////////TODO Спросить про насле�
     {
         std::cout << "Имя: ";
         tmp->Get_Person_name()->PrintList();
-        std::cout << "    Место: " << tmp->Get_Seat();
+        if (tmp->Get_First_Seat() != tmp->Get_Last_Seat()) {
+            std::cout << "    Места: " << tmp->Get_First_Seat()
+                      << " - " << tmp->Get_Last_Seat();
+        }else std::cout << "    Место: " << tmp->Get_First_Seat();
         std::cout << "\n";
         tmp = tmp->Get_next();
     }

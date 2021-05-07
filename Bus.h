@@ -37,7 +37,7 @@ public:
     Tickets* SetTickets(Tickets* m_tickets) {tickets = m_tickets; }
 
     bool Enough_Seats(unsigned num);
-    unsigned Take_a_Seat();
+    unsigned Take_a_Seats(unsigned short amount);
     void SetNext(Bus* m_next) { next = m_next; }
     void PrintList(std::ofstream& f);
     void PrintList();
@@ -66,7 +66,6 @@ public:
     List_of_Matches* GetNext() { return next; }
     Bus* GoTo(unsigned num);
 
-    void Delete();
 };
 
 
