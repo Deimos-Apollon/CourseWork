@@ -120,17 +120,19 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
                 tmp->setPerson_name(clients_name);
                 tmp->Set_First_Seat(match_bus->Take_a_Seats(1));
 
-                if (l_ticks == nullptr) {
-                    match_bus->SetTickets(new Tickets);
+                tmp->Set_Last_Seat(match_bus->Take_a_Seats(amount_of_ticks - 1));
 
+                if (l_ticks != nullptr) {
+
+                    l_ticks->GetLast()->SetNext(tmp);
+                    l_ticks->setLast(tmp);
+                } else {
                     l_ticks = new Tickets;
                     l_ticks->setHead(tmp);
                     l_ticks->setLast(tmp);
 
+                    match_bus->SetTickets(l_ticks);
                 }
-
-                tmp->Set_Last_Seat(match_bus->Take_a_Seats(amount_of_ticks - 1));
-                l_ticks->setLast(tmp);
 
                 f << "Имя покупателя: ";
                 tmp->Get_Person_name()->PrintList(f);
@@ -145,7 +147,7 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
                 f << "Автобус: \n";
                 match_bus->PrintList(f);
                 f << "\n";
-            }
+            } else f << "Err: Нет столько мест на рейс!\n\n";
 
         }
     } else

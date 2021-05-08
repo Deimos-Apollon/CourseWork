@@ -69,5 +69,17 @@ int main() {
 
     //TODO сделать несколько билетов для одного человека при вводе и список людей и его билетов + места
 
+    //проверка корректности считанных билетов
+    auto tmp = buses->GetHead(); unsigned i = 1;
+    while (tmp != nullptr)
+    {
+        if (tmp->GetTickets() != nullptr)
+        {
+            std::cout << "Билеты на рейс №" << i << ":\n";
+            tmp->GetTickets()->PrintList();
+        } else  std::cout << "Билеты на рейс №" << i << " все свободны\n";
+        tmp = tmp->GetNext();
+        i++;
+    }
     return 0;
 }

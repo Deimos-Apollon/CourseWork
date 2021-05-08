@@ -21,5 +21,4 @@ void Ticket::PrintList() {   ///////////TODO Спросить про насле�
 
 void Tickets::PrintList() {
     if (head != nullptr) head->PrintList();
-    else std::cout << "ERR: список билетов пуст\n";
 }

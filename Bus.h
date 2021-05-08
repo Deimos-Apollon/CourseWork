@@ -12,12 +12,12 @@ class Bus {
     Buses_names* bus_name = nullptr;
     Buses_types* bus_type = nullptr;
     Cities* city = nullptr;
+    unsigned hour = 0, min = 0;
 
     const unsigned all_seats = 50;
     unsigned taked_seats = 0;
-    Tickets* tickets = nullptr;
 
-    unsigned hour = 0, min = 0;
+    Tickets* tickets = nullptr;
     Bus* next = nullptr;
 public:
     //Bus (Buses_names* m_bus_name,
@@ -80,8 +80,6 @@ void ProcessRequests(std::ofstream &f,
                      Buses_names* head_names, Buses_types* head_types, Cities* head_cities,
                      List_Of_Buses* buses,
                      unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min, unsigned request_num);
-
-
 
 
 #endif //COURSEWORK_BUS_H
