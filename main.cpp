@@ -56,6 +56,13 @@ int main() {
     //names->PrintList(f_out);
 
     Buses_types* types = ReadType(f_in_types);
+    if (types->GetName() == nullptr)
+    {
+        f_out << "ERR: Список типов автобусов пуст, проверьте корректность данных\n";
+
+        return -1;
+    }
+
     //types->PrintList(f_out);
 
 
@@ -63,6 +70,7 @@ int main() {
 
     List_Of_Buses* buses = ReadBuses(f_in_buses, names, types, cities);
     //if (buses != nullptr) buses->PrintList(f_out);
+
 
     ///////////////////////////////////////////////////////////////////////Reading and Processing Requests
     ReadRequests(f_in, f_out, names, types, cities, buses);
@@ -77,7 +85,7 @@ int main() {
         {
             std::cout << "Билеты на рейс №" << i << ":\n";
             tmp->GetTickets()->PrintList();
-        } else  std::cout << "Билеты на рейс №" << i << " все свободны\n";
+        } else  std::cout << "Места на рейс №" << i << " все свободны\n";
         tmp = tmp->GetNext();
         i++;
     }

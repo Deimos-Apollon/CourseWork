@@ -63,12 +63,16 @@ public:
 class Buses_types
 {
     String* name = nullptr;
+    unsigned int seats = 0;
     Buses_types* next = nullptr;
 public:
     String* GetName() { return name; }
     Buses_types* GetNext() { return next; }
+    unsigned int GetSeats() {return seats; }
+
     void SetName(String* m_name) { name = m_name; }
     void SetNext(Buses_types* m_next) { next = m_next; }
+    void SetSeats(unsigned int set_seats) { seats = set_seats; }
 
     void PrintList(std::ofstream& f);
 };

@@ -211,7 +211,6 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
             }
         } else corr = false;
 
-
         //////////// чтение остальных параметров
 
 
@@ -219,11 +218,13 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
             unsigned short i = 0;
 
             f >> c;
-            while (c == ' ') {
-                f >> c;
-                if (f.eof()) break;
-            }
-            f.seekg(-1, std::ios::cur);
+            if (c == ' ') {
+                while (c == ' ') {
+                    f >> c;
+                    if (f.eof()) break;
+                }
+                f.seekg(-1, std::ios::cur);
+            } else corr = false;
                 while (c != '\n' && corr) {
                     f >> c;
                     if (f.eof()) break;
@@ -368,30 +369,113 @@ Cities* ReadCities(std::ifstream& f)
 
 Buses_names* ReadNames(std::ifstream& f)
 {
-    Buses_names* city = new Buses_names;
-    Buses_names* head = city;
-    city->SetName(ReadStr(f));
+    Buses_names* name = new Buses_names;
+    Buses_names* head = name;
+    name->SetName(ReadStr(f));
 
     while (!f.eof())
     {
-        city->SetNext(new Buses_names);
-        city = city->GetNext();
-        city->SetName(ReadStr(f));
+        name->SetNext(new Buses_names);
+        name = name->GetNext();
+        name->SetName(ReadStr(f));
     }
     return head;
 }
 
 Buses_types* ReadType(std::ifstream& f)
 {
-    Buses_types* city = new Buses_types;
-    Buses_types* head = city;
-    city->SetName(ReadStr(f));
+    Buses_types* type = new Buses_types;
+    Buses_types* head = type;
 
-    while (!f.eof())
-    {
-        city->SetNext(new Buses_types);
-        city = city->GetNext();
-        city->SetName(ReadStr(f));
+    unsigned i = 0;
+
+    while (!f.eof()) {
+
+        ++i;
+        ///////////Reading bus type
+        char c = ' ';
+        bool corr = true;
+
+        f >> c;
+        String *name = new String;
+        if (c == '"') {
+            c = ' ';
+
+            while (c != '"') {
+                char *tmpS = new char[N];
+                for (int k = 0; k < N; k++) {
+
+                    f >> c;
+                    if (c == '\n' || f.eof()) {
+                        corr = false;
+                        break;
+                    }
+
+                    if (c == '"') {
+                        if (k != 0) {
+
+                            char *tmp2 = new char[k];
+                            for (int j = 0; j < k; j++) {
+                                tmp2[j] = tmpS[j];
+                            }
+
+                            name->AddLastEl(tmp2);
+                            name->SetLastElLength(k);
+                            break;
+                        }
+                    }
+                    tmpS[k] = c;
+                }
+
+                if (c != '"') {
+                    name->AddLastEl(tmpS);
+                    name->SetLastElLength(N);
+                }
+
+                if (c == '\n' || f.eof()) {
+                    corr = false;
+                    break;
+                }
+            }
+        } else corr = false;
+
+        unsigned int seats;
+        if (corr) {
+            //////////////////Reading amount of seats
+            f >> c;
+            if (c == ' ') {
+                while (c == ' ') {
+                    f >> c;
+                }
+                f.seekg(-1, std::ios::cur);
+            } else corr = false;
+
+            while (corr) {
+
+                f >> c;
+                if ( c == '\n' || f.eof() ) break;
+                if ('0' <= c && c <= '9') Char_to_int(c, seats);
+                else {
+                    corr = false; break;
+                }
+            }
+
+        }
+
+        if (corr){
+            ////////////////Creating new element of bus_types
+
+            type->SetName(name);
+            type->SetSeats(seats);
+            type->SetNext(new Buses_types);
+            type = type->GetNext();
+        }
+        else std::cout << "Ошибка чтения типа автобуса #" << i << "\n\n";
+
+        while (c != '\n' && !f.eof())
+        {
+            f >> c;
+        }
     }
     return head;
 }
