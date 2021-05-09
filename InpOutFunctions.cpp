@@ -42,7 +42,6 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
     std::cout << "\n\nЗаявка #" << request_num << ", ";
     clients_name->PrintList();
     std::cout << ", поиск подходящих автобусов: \n\n";
-
     while (tmp != nullptr)
     {
         if ((tmp->GetName() == tmp_names || n_name == 0) &&
@@ -257,9 +256,11 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                                 f >> c;
                                 if (f.eof()) break;
                             }
-
                             f.seekg(-1, std::ios::cur);
-                            if (i < 5) i++; else corr = false;
+
+                            if (c != '>' && c != '<') {
+                                if (i < 5) i++; else corr = false;
+                            }
                             break;
                         case ':':
                             if (i == 3) i++; else corr = false;
@@ -268,9 +269,11 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                             break;
                         case '>':
                             if (i == 2) time_more = true;
+                            ++i;
                             break;
                         case '<':
-                            if (i == 2) time_more = true;
+                            if (i == 2) time_less = true;
+                            ++i;
                             break;
                         default:
                             corr = false;
@@ -284,7 +287,7 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
         }
         if (corr) ProcessRequests(f_out, head_names, head_types, head_cities, buses, name,
                         params[0], params[1], params[2],
-                        params[3], params[4], time_more, time_less,
+                        params[3], params[4], time_less, time_more,
                         params[5], request_num);
         else f_out << "Заявка #" << request_num << " некорректна\n\n";
         request_num++;

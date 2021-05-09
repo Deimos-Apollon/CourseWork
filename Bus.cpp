@@ -85,6 +85,21 @@ void List_Of_Buses::PrintList()
     }
 }
 
+void List_Of_Buses::Print_All_BusesTickets() {
+    auto tmp = m_head; unsigned i = 1;
+    while (tmp != nullptr)
+    {
+        if (tmp->GetTickets() != nullptr)
+        {
+            std::cout << "Билеты на рейс №" << i << ":\n";
+            tmp->GetTickets()->PrintList();
+        } else  std::cout << "Места на рейс №" << i << " все свободны\n";
+        std::cout << "\n";
+        tmp = tmp->GetNext();
+        i++;
+    }
+}
+
 Bus* List_of_Matches::GoTo(unsigned num)
 {
     List_of_Matches* tmp = this->GetNext();

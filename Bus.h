@@ -51,6 +51,7 @@ public:
     void SetHead(Bus* head) { m_head = head; }
     void SetLast(Bus* last) { m_last = last; }
     Bus* GetHead() { return m_head; }
+    void Print_All_BusesTickets();
 
     void PrintList(std::ofstream& f);
     void PrintList();
