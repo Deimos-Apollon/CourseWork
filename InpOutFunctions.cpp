@@ -5,8 +5,8 @@
 
 void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* head_types, Cities* head_cities, List_Of_Buses* buses,
                      String* clients_name,
-                    unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour,
-                    unsigned min, unsigned amount_of_ticks, unsigned request_num)
+                    unsigned n_name, unsigned n_type, unsigned n_city,  unsigned hour,
+                    unsigned min, bool time_less, bool time_more, unsigned amount_of_ticks, unsigned request_num)
 {
     Buses_names* tmp_names = head_names;
     Buses_types* tmp_types = head_types;
@@ -47,9 +47,33 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
     {
         if ((tmp->GetName() == tmp_names || n_name == 0) &&
             (tmp->GetType() == tmp_types || n_type == 0) &&
-            (tmp->GetCity() == tmp_cities || n_city == 0) &&
-            tmp->GetHour() == hour && tmp->GetMin() == min)
+            (tmp->GetCity() == tmp_cities || n_city == 0))
         {
+            //////If time must be less than this bus' time
+            if (time_less)
+            {
+                if (tmp->GetHour() > hour || (tmp->GetHour() == hour && tmp->GetMin() < min))
+                {
+                    tmp = tmp->GetNext(); continue;
+                }
+            }
+
+            ////if time must be more than that bus' time
+            if (time_more)
+            {
+                if ((tmp->GetHour() < hour) || (tmp->GetHour() == hour && tmp->GetMin() > min))
+                {
+                    tmp = tmp->GetNext(); continue;
+                }
+            }
+
+            /////////////////////if this bus has seats;
+            if (!tmp->Enough_Seats(amount_of_ticks))
+            {
+                tmp = tmp->GetNext();
+                continue;
+            }
+
             std::cout << "Автобус #" << num<< "\n";
             tmp->PrintList();
             std:: cout << "\n";
@@ -209,6 +233,7 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
         } else corr = false;
 
         //////////// чтение остальных параметров
+        bool time_more = false, time_less = false;
 
         if (corr) {
             unsigned short i = 0;
@@ -241,6 +266,12 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
                             break;
                         case '\n':
                             break;
+                        case '>':
+                            if (i == 2) time_more = true;
+                            break;
+                        case '<':
+                            if (i == 2) time_more = true;
+                            break;
                         default:
                             corr = false;
                     }
@@ -252,7 +283,9 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
             corr = false;
         }
         if (corr) ProcessRequests(f_out, head_names, head_types, head_cities, buses, name,
-                        params[0], params[1], params[2], params[3], params[4], params[5], request_num);
+                        params[0], params[1], params[2],
+                        params[3], params[4], time_more, time_less,
+                        params[5], request_num);
         else f_out << "Заявка #" << request_num << " некорректна\n\n";
         request_num++;
 

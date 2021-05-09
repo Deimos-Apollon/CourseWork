@@ -1,10 +1,6 @@
-"Emelyanov Dmitry Sergeevich" "3" "3" "2" "10" "15" "1"
-"Emelyanov Dmitry Sergeevich" 3 3 2 10:15 20
-"Emelyanov Dmitry Sergeevich" 3 3 2 10:15 1
-"Emelyanov Dmitry Sergeevich" 3 3 2 10:15
-"Emelyanov Dmitry Sergeevich" 3 3 2
-"Emelyanov Dmitry Sergeevich" 3 3
-"Emelyanov Dmitry Sergeevich" 3
-"Emelyanov Dmitry Sergeevich"
-"Anisimov werer" - - - 10:15 20
-"Anisimov werer" - - - 10:15 20
+"Emelyanov Dmitry Sergeevich" 3 3 2 >10:15 5
+"Emelyanov Dmitry Sergeevich" 3 3 2 >10:15 1
+"Anisimov werer" - - - >10:15 5
+"Penzeff" - - - <>10:15 5
+"Lomoff" - - - >19:20 10
+"Dmitry" - - - <20:00 2

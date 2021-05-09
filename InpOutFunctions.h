@@ -20,7 +20,8 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,
 
 void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* head_types, Cities* head_cities,
                      List_Of_Buses* buses, String* clients_name,
-                     unsigned n_name, unsigned n_type, unsigned n_city, unsigned hour, unsigned min, unsigned amount_tick,
+                     unsigned n_name, unsigned n_type,
+                     unsigned n_city, unsigned hour, unsigned min, bool time_less, bool time_more, unsigned amount_tick,
                      unsigned request_num);
 
 

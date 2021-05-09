@@ -86,6 +86,7 @@ int main() {
             std::cout << "Билеты на рейс №" << i << ":\n";
             tmp->GetTickets()->PrintList();
         } else  std::cout << "Места на рейс №" << i << " все свободны\n";
+        std::cout << "\n";
         tmp = tmp->GetNext();
         i++;
     }
