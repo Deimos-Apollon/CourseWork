@@ -14,7 +14,7 @@ class Bus {
     Cities* city = nullptr;
     unsigned hour = 0, min = 0;
 
-    const unsigned all_seats = 50;
+    // all seats it Bus_type
     unsigned taked_seats = 0;
 
     Tickets* tickets = nullptr;

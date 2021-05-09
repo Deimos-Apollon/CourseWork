@@ -32,6 +32,7 @@ void Bus::PrintList(std::ofstream& f)
         f << "\n";
         f << "Тип: ";
         bus_type->GetName()->PrintList(f);
+        f << "     с количеством мест: " << bus_type->GetSeats();
         f << "\n";
         f << "Город следования:  ";
         city->GetName()->PrintList(f);
@@ -61,8 +62,8 @@ void Bus::PrintList()
         std::cout << "Имя: ";
         bus_name->GetName()->PrintList();
         std::cout << "\n";
-        std::cout << "Тип: ";
-        bus_type->GetName()->PrintList();
+        std::cout << "Тип: "; bus_type->GetName()->PrintList();
+        std::cout << "     с количеством мест: " << bus_type->GetSeats();
         std::cout << "\n";
         std::cout << "Город следования: ";
         city->GetName()->PrintList();
@@ -107,5 +108,5 @@ unsigned Bus::Take_a_Seats(unsigned short amount) {
 }
 
 bool Bus::Enough_Seats(unsigned int num) {
-    return (all_seats >= num + taked_seats);
+    return (this->bus_type->GetSeats() >= num + taked_seats);
 }

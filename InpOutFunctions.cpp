@@ -50,12 +50,9 @@ void ProcessRequests(std::ofstream &f, Buses_names* head_names, Buses_types* hea
             (tmp->GetCity() == tmp_cities || n_city == 0) &&
             tmp->GetHour() == hour && tmp->GetMin() == min)
         {
-            std::cout << "Автобус #" << num;
-            std::cout << "\nИмя: "; tmp->GetName()->GetName()->PrintList();
-            std::cout << "\nТип: "; tmp->GetType()->GetName()->PrintList();
-            std::cout << "\nГород следования: "; tmp->GetCity()->GetName()->PrintList();
-            std::cout << "\nОтправление в " << tmp->GetHour() << ":" << tmp->GetMin() << "\n\n";
-
+            std::cout << "Автобус #" << num<< "\n";
+            tmp->PrintList();
+            std:: cout << "\n";
             matches->setNext(new List_of_Matches);
             matches = matches->GetNext();
             matches->setBus(tmp);
@@ -213,7 +210,6 @@ void ReadRequests(std::ifstream& f, std::ofstream& f_out,Buses_names* head_names
 
         //////////// чтение остальных параметров
 
-
         if (corr) {
             unsigned short i = 0;
 
@@ -342,6 +338,7 @@ List_Of_Buses* ReadBuses(std::ifstream& f, Buses_names* head_names, Buses_types*
                     tmp_bus->SetNext(new Bus);
                     tmp_bus = tmp_bus->GetNext();
                     tmp_bus->BusInitialize(tmp_names, tmp_types, tmp_cities, params[3], params[4]);
+
                 }
             }                     //TODO подробный отчёт по заявке и ошибки в формировании автобуса
         }
@@ -439,7 +436,7 @@ Buses_types* ReadType(std::ifstream& f)
             }
         } else corr = false;
 
-        unsigned int seats;
+        unsigned int seats = 0;
         if (corr) {
             //////////////////Reading amount of seats
             f >> c;
